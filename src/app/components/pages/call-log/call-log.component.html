@@ -1,0 +1,130 @@
+<div class="container" dir="rtl">
+  <div class="page-heading">
+    <h1>יומן שיחות</h1>
+    <div>
+      <mat-form-field>
+        <mat-select [(ngModel)]="selectedTimeRange" name="date" (ngModelChange)="changeSelection($event)">
+          <mat-option *ngFor="let date of timeRangeSelection" [value]="date.value">
+            {{date.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>
+
+<section>
+  <div class="container" dir="rtl">
+    <div class="total-layout">
+
+      <mat-card class="card-layout cursor-pointer" (click)="selectedFilter = 'newCalls';refreshTableParams()" [ngClass]="{'activeCard':selectedFilter == 'newCalls'}">
+        <div class="text-color-pale mat-caption">
+          <mat-icon class="smallIcon">star_rate</mat-icon>
+          <span>שיחות חדשות</span>
+        </div>
+        <h3>{{newMessagesCounter()}}</h3>
+      </mat-card>
+
+      <mat-card class="card-layout cursor-pointer" (click)="selectedFilter = 'answerdCalls';refreshTableParams()" [ngClass]="{'activeCard':selectedFilter == 'answerdCalls'}">
+        <div class="text-color-pale mat-caption">
+          <mat-icon class="smallIcon">thumb_up</mat-icon>
+          <span>שיחות שטופלו</span>
+        </div>
+        <h3>{{answerdCalls()}}</h3>
+      </mat-card>
+
+
+      <mat-card class="card-layout noBackGroundCard">
+        <div class="text-color-pale mat-caption">
+          <mat-icon class="smallIcon">phone</mat-icon>
+          <span>סה"כ שיחות שהתקבלו</span>
+        </div>
+        <h3>{{(unFilterdData && unFilterdData.calls) ? unFilterdData.calls.length : 0 }}</h3>
+      </mat-card>
+
+      <mat-card class="card-layout noBackGroundCard">
+        <div class="text-color-pale mat-caption">
+          <mat-icon class="smallIcon">alarm</mat-icon>
+          <span>סה"כ זמן AI</span>
+        </div>
+        <h3>{{(unFilterdData && unFilterdData.aiSeconds) ? (unFilterdData.aiSeconds | secendsToTime) : '00:00' }}</h3>
+      </mat-card>
+
+
+
+
+      <!-- <mat-card class="noBackGroundCard hamatImg">
+        <img style="float:left;" src="./assets/images/hamat_logo.svg">
+      </mat-card> -->
+    </div>
+
+    <div [style.display]="(callLogArray && callLogArray.calls.length > 0) ? 'block' :'none'">
+      <div class="table-filters" dir="ltr">
+        <mat-paginator class="table-controls" dir="rtl" #paginator [length]="callLogArray?.calls.length" [pageIndex]="0" [pageSize]="5"
+          [pageSizeOptions]="[5, 10, 25, 100]">
+        </mat-paginator>
+        <mat-form-field floatPlaceholder="never" block pristine>
+          <input matInput #filter placeholder="חפש" dir="rtl">
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <div [style.display]="(callLogArray.calls && callLogArray.calls.length > 0) ? 'block' :'none'">
+      <h3>{{selectedFilter == 'answerdCalls' ? 'שיחות שטופלו' : 'שיחות חדשות' }}</h3>
+    </div>
+    <div [style.display]="(callLogArray.calls && callLogArray.calls.length > 0) ? 'block' :'none'">
+
+      <mat-table #table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="from">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>שיחות</mat-header-cell>
+          <mat-cell dir="ltr" *matCellDef="let row" style="color:black; font-weight: bold;text-align: right;">
+            {{row.from}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="startDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> תאריך ושעה</mat-header-cell>
+          <mat-cell *matCellDef="let row" dir="ltr" style="text-align: right;"> {{row.startDate | date:'dd MMM, h:mm a' : 'locale'}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="duration">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> משך ההודעה</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.duration | milisecendToTime}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="to">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> התקשר אל </mat-header-cell>
+          <mat-cell *matCellDef="let row" class="text-color-pale"> {{row.to}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="recordingUrl">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>הקלטות</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <audio-component #audio *ngIf="row.recordingUrl" [src]="[row.recordingUrl]"></audio-component>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actionsColumn">
+          <mat-header-cell *matHeaderCellDef style="max-width: 15px;">
+
+          </mat-header-cell>
+          <mat-cell dir="ltr" *matCellDef="let row" style="max-width: 15px; overflow: visible;">
+            <button mat-icon-button [disabled]="callSatusLoading" (click)="updateCallStatus(row)" *ngIf="selectedFilter === 'newCalls'"
+              [ngClass]="{'disabledIcon':callSatusLoading}">
+              <mat-icon matTooltip="העבר לשיחות שטופלו" [matTooltipPosition]="'after'">close</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; let i = index; columns: displayedColumns;"  [ngClass]="{'highlight': selectedRowIndex == row.id}"
+        (click)="focusSelectedRow(row);stopLastAudio(i)">
+
+        </mat-row>
+      </mat-table>
+    </div>
+  </div>
+</section>

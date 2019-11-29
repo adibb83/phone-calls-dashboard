@@ -1,0 +1,327 @@
+@import './mixins';
+
+@include keyframes(lineIn){
+  0%{
+    width: 0%;
+  }
+  100%{
+    width: 100%;
+  }
+}
+@include keyframes(fadeIn) {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@include keyframes(fadeOut) {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@include keyframes(fadeOutBlock) {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    z-index: -1;
+  }
+}
+
+@include keyframes(fadeInBlock) {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    z-index: 0;
+  }
+}
+
+
+
+
+@include keyframes(slideDown) {
+  0% {
+    height: 0px;
+    @include transform(translateY(0%));
+  }
+  100% {
+    height: 2px;
+    @include transform(translateY(100%));
+  }
+}
+
+@include keyframes(slideInRight) {
+  0% {
+    opacity: 0;
+    @include transform(translateX(100%));
+  }
+  100% {
+    opacity: 1;
+    @include transform(translateX(0));
+  }
+}
+
+
+
+@include keyframes(slideOutLeft) {
+  0% {
+    opacity: 1;
+    @include transform(translateX(0));
+  }
+  100% {
+    opacity: 0;
+    @include transform(translateX(-100%));
+  }
+}
+
+
+@include keyframes(bounce) {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    @include transform(translateY(0));
+  }
+  40% {
+    @include transform(translateY(-30px));
+  }
+  60% {
+    @include transform(translateY(-15px));
+  }
+}
+
+
+
+@include keyframes(slideInRightExtra) {
+  0% {
+    opacity: 1;
+    @include transform(translateX(100%));
+  }
+  100% {
+    opacity: 1;
+    @include transform(translateX(0));
+  }
+}
+
+
+@include keyframes(slideOutLeftExtra) {
+  0% {
+    opacity: 1;
+    @include transform(translateX(0));
+  }
+  100% {
+    opacity: 1;
+    @include transform(translateX(-100%));
+  }
+}
+
+.slideOutLeftExtra {
+  -webkit-animation-name: slideOutLeftExtra;
+  animation-name: slideOutLeftExtra;
+}
+
+@include keyframes(bounceInLeft) {
+  0% {
+    opacity: 0;
+    @include transform(translateX(-2000px));
+  }
+  60% {
+    @include transform(translateX(30px));
+  }
+  80% {
+    @include transform(translateX(-10px));
+  }
+  100% {
+    opacity: 1;
+    @include transform(translateX(0));
+  }
+}
+
+.bounceInLeft {
+  -webkit-animation-name: bounceInLeft;
+  animation-name: bounceInLeft;
+}
+
+@include keyframes(bounceInRight) {
+  0% {
+    opacity: 0;
+    @include transform(translateX(2000px));
+  }
+  60% {
+    @include transform(translateX(-30px));
+  }
+  80% {
+    @include transform(translateX(10px));
+  }
+  100% {
+    opacity: 1;
+    @include transform( translateX(0));
+  }
+}
+
+.bounceInRight {
+  -webkit-animation-name: bounceInRight;
+  animation-name: bounceInRight;
+}
+
+@include keyframes(spin) {
+  from {
+    @include transform( rotate(0deg));
+  }
+  to {
+    @include transform( rotate(360deg));
+  }
+}
+
+.spin {
+  -webkit-animation-name: bounceInRight;
+  animation-name: bounceInRight;
+}
+
+@include keyframes(fadeIn) {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@include keyframes(fadeInLeft) {
+  from {
+    opacity: 0;
+    @include transform( translate3d(-20px, 0, 0));
+  }
+  to {
+    opacity: 1;
+    @include transform( none);
+  }
+}
+
+@include keyframes(insertList) {
+  from {
+    @include transform(translateX(-100%));
+  }
+  to {
+    @include transform(translateX(-10%));
+  }
+}
+
+@include keyframes(exitList) {
+  from {
+    @include transform(translateX(-10%));
+  }
+  to {
+    @include transform(translateX(-100%));
+  }
+}
+
+@include keyframes(spin) {
+  from {
+    @include transform(rotate(0deg));
+  }
+  to {
+    @include transform( rotate(360deg));
+  }
+}
+
+@include keyframes (carousel) {
+  0% {
+    left: 0;
+  }
+  12% {
+    left: 0;
+  }
+  25% {
+    left: -100%;
+  }
+  35% {
+    left: -100%;
+  }
+  50% {
+    left: -200%;
+  }
+  70% {
+    left: -200%;
+  }
+  85% {
+    left: -100%;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@include keyframes (loading6-ani1) {
+  70% {
+    width: 50px;
+    height: 50px;
+  }
+  100% {
+    width: 50px;
+    height: 50px;
+    border-width: 0;
+  }
+}
+
+@include keyframes (bounce_circularG) {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(.3);
+  }
+}
+
+@include keyframes (animationSlideOutUp) {
+  0% {
+    @include transform(translate(0, 0));
+  }
+  100% {
+    @include transform(translate(0, -100vh));
+  }
+}
+
+@include keyframes(animationSlideInUp) {
+  0% {
+    @include transform(translate(0, 100vh));
+  }
+  100% {
+    @include transform(translate(0, 0));
+  }
+}
+
+@include keyframes(animationSlideInDown) {
+  0% {
+    @include transform(translate(0, -100vh));
+  }
+  100% {
+    @include transform(translate(0, 0));
+  }
+}
+
+@include keyframes(toggleIn) {
+  0% {
+   max-height: 0px;
+  }
+  100% {
+    max-height: 150px;
+  }
+}
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20%);
+    opacity: 0;
+  }
+}

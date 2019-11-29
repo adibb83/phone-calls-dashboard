@@ -1,0 +1,27 @@
+<header class="page-header">
+  <div class="header-row">
+    <mat-toolbar class="title-wrap" [ngClass]="{ 'sidebar-aligned': authToken$}">
+      <div class="logo">
+        <img src="./assets/images/OverAiConsoleLogo.svg">
+      </div>
+    </mat-toolbar>
+    <mat-toolbar class="nav-wrap">
+      <div class="container"> 
+        <div class="spacer"></div>
+        <div class="user-greet">
+          <span>
+            {{userName$}}
+          </span>
+        </div>
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>arrow_drop_down</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" yPosition="below" xPosition="before" [overlapTrigger]="false">
+            <app-account-menu [authToken]="authToken$"></app-account-menu>
+          </mat-menu>
+        </div>
+      </div>
+    </mat-toolbar>
+  </div>
+</header>

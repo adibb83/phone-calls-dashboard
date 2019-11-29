@@ -1,0 +1,38 @@
+@import './breakpoints';
+@import './mixins';
+body,
+html {
+  // @include breakpoint(papa-bear) {
+  //   font-size: .6rem !important;
+  // }
+  // @include breakpoint(mama-bear) {
+  //   font-size: .55rem !important;
+  // }
+  // @include breakpoint(child-bear) {
+  //   font-size: .5rem !important;
+  // }
+  // @include breakpoint(baby-bear) {
+  //   font-size: .4rem !important;
+  // }
+  // @include breakpoint(sperm-bear) {
+  //   font-size: .3rem !important;
+  // }
+}
+
+body {
+  @include animation(fadeIn 2s);
+  overflow-y: auto; // &::-webkit-scrollbar {
+  //   width: 0px !important;
+  //   display: none;
+  // }
+}
+
+
+
+// .fixed-header {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   z-index: 10;
+//   width: 100%  !important;
+// }

@@ -1,0 +1,131 @@
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/breakpoints';
+
+$ligthBlue:#3899ec;
+$ligthGray:#9b9b9b;
+$lightGray2: #f7f7f7;
+
+.page-heading{
+  margin: 0;
+  align-items:flex-end;
+}
+
+.mat-cell{
+  color: $ligthGray;
+}
+
+.mat-row{
+  &.highlight{
+    background: $lightGray2;
+      .mat-icon-button{
+        color: black;
+      }
+   }
+}
+
+ section {
+  padding: 1rem 0 !important;
+}
+
+.numbers {
+  @include flex-flow(row nowrap);
+  justify-content: space-between;
+}
+
+.table-filters {
+  @include flex-flow(row nowrap);
+  justify-content: space-between;
+  >* {
+    flex-grow: 0;
+    flex-basis: 24%;
+  }
+}
+.mat-icon{
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+
+
+.smallIcon {
+  font-size: 16px;
+  height: 22px;
+  width: 16px;
+  margin-left: 5px;
+}
+
+.contactColor {
+  color: red;
+}
+
+.total-layout {
+  @include flex-flow(row wrap);
+  justify-content: space-between;
+  >* {
+    flex-grow: 0;
+    flex-basis: 24%;
+  }
+}
+
+.card-layout {
+  @include flex-flow(column nowrap);
+  justify-content: flex-start;
+  align-items: flex-end;
+  max-height: 10rem;
+}
+
+.noBackGroundCard {
+  background-color: inherit !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, .1) !important;
+}
+
+.activeCard {
+  background-color: $ligthBlue;
+  > div{
+    color: white !important;
+  }
+  h3{color: white !important;}
+}
+
+.disabledIcon{
+  color:gray;
+}
+
+@supports(grid-area: auto) {
+  .total-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16vw, 1fr));
+    grid-gap: 4rem;
+    // grid-gap: 2rem 5rem;
+    @include breakpoint(mama-bear) {
+      grid-template-columns: repeat(2, minmax(30vw, 1fr));
+      grid-gap:1rem 4rem;
+      .hamatImg{
+        display: none;
+      }
+    }
+
+    @include breakpoint(baby-bear) {
+      grid-template-columns: repeat(2, minmax(40vw, 1fr));
+      grid-gap:1rem 4rem;
+      .hamatImg{
+        display: none;
+      }
+    }
+  }
+  .table-filters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem 1rem;
+    align-items: baseline;
+    @include breakpoint(mama-bear) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .card-layout {
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 1rem 1rem;
+  }
+}

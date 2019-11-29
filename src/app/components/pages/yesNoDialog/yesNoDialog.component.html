@@ -1,0 +1,25 @@
+<!-- <div class="container">
+  <h2 mat-dialog-title><span style="color:red;"></span>{{title}}<br>{{message}}</h2>
+      <div mat-dialog-actions class="flexRowSpaceBetween">
+        <button mat-raised-button  color="warn" (click)="dialogRef.close(true)">{{approveButtonText}}</button>
+        <button mat-raised-button  color="accent"  (click)="dialogRef.close(false)">Cancel</button>
+      </div>
+</div> -->
+
+
+
+<div mat-dialog-title>
+  <h1>{{title}}</h1>
+  <div class="control">
+    <mat-icon>help</mat-icon>
+  </div>
+</div>
+<mat-dialog-content>
+  <p>
+    {{message}}
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="dialogRef.close(false)">Cancel</button>
+  <button mat-raised-button color="primary" (click)="dialogRef.close(true)">{{approveButtonText}}</button>
+</mat-dialog-actions>

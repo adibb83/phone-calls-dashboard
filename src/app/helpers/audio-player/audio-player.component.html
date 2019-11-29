@@ -1,0 +1,17 @@
+<div class="player-layout" dir="ltr">
+  <span  class="mat-caption text-color-pale"> {{time}}</span>
+  <mat-icon (click)="play()" class="cursor-pointer" *ngIf="!status">play_arrow</mat-icon>
+  <mat-icon (click)="pause()" class="cursor-pointer" *ngIf="status">pause</mat-icon>
+  <mat-slider invert dir="rtl" color="primary" min="1" max="{{player.nativeElement.duration}}" step="1" [(ngModel)] ="player.nativeElement.currentTime" (input)="audioSliderInput($event)" (mouseup)="audioSliderMouseup($event)"></mat-slider>
+
+</div>
+
+<audio style="display:none;" #audioplayer class="player" [src]="list" [autoplay]="autoplay" [controls]="controls" [volume]="volume"
+  [loop]="loop" [preload]="preload" [muted]="muted">
+
+</audio>
+<!-- <button type="button" (click)="play()" *ngIf="playButton">Play</button>
+<button type="button" (click)="pause()" *ngIf="pauseButton">Pause</button>
+<button type="button" (click)="previousTrack()" *ngIf="selectableButton">Previous</button>
+<button type="button" (click)="nextTrack()" *ngIf="selectableButton">Next</button>
+<button type="button" (click)="muteVideo()" *ngIf="muteButton">Mute</button> -->

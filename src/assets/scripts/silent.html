@@ -1,0 +1,24 @@
+<head>
+  <title></title>
+</head>
+
+<body>
+  <script>
+    (function () {
+      const hash = window.location.hash;
+      let token = {};
+      if (hash.includes('error')) {
+        window.parent.postMessage('TokenError', window.location.origin);
+        return 0;
+      }
+
+      token.access_token = hash.slice(hash.indexOf('access_token=') + 13, hash.indexOf('&token_type='));
+      token.expires_in = hash.slice(hash.indexOf('expires_in=') + 11, hash.indexOf('&scope='));
+      token.token_type = hash.slice(hash.indexOf('&token_type=') + 12, hash.indexOf('&expires_in='));
+      if (token.access_token && token.expires_in && token.token_type) {
+        window.parent.postMessage(token, window.location.origin);
+      }
+    }());
+
+  </script>
+</body>

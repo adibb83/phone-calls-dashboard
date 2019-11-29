@@ -1,0 +1,18 @@
+$FlamaSemicondensed-fontface-path: '../fonts' !default;
+
+@mixin FlamaSemicondensed-fontface($type, $weight, $style) {
+    @font-face {
+        font-family: 'FlamaSemicondensed';
+        src: url('#{$FlamaSemicondensed-fontface-path}/FlamaSemicondensed-#{$type}.eot');
+        src: local('☺'),
+            //  url('#{$FlamaSemicondensed-fontface-path}/FlamaSemicondensed-#{$type}.eot?#iefix') format('embedded-opentype'),
+            //  url('#{$FlamaSemicondensed-fontface-path}/FlamaSemicondensed-#{$type}.woff2') format('woff2'),
+            //  url('#{$FlamaSemicondensed-fontface-path}/FlamaSemicondensed-#{$type}.woff2') format('woff2'),
+             url('#{$FlamaSemicondensed-fontface-path}/FlamaSemicondensed-#{$type}.woff') format('woff');
+            //  url('#{$FlamaSemicondensed-fontface-path}/FlamaSemicondensed-#{$type}.ttf') format('truetype'),
+            //  url('#{$FlamaSemicondensed-fontface-path}/FlamaSemicondensed-#{$type}.svg#FlamaSemicondensed-#{$type}') format('svg');
+        font-weight: $weight;
+        font-style: $style;
+    }
+}
+

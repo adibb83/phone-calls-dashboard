@@ -1,0 +1,142 @@
+@import './breakpoints';
+@import './variables';
+@import './mixins';
+
+.page{
+  padding: 4rem;
+}
+.columnFlexStart {
+  @include flex-flow(column nowrap);
+  justify-content: flex-start;
+}
+
+.columnFlexCenter {
+  @include flex-flow(column nowrap);
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.columnFlexCenterCenter {
+  @include flex-flow(column nowrap);
+  justify-content: center;
+  align-items: center;
+}
+
+.errorMessageHelper {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include transform(translate(-50%, -50%));
+  z-index: 1000;
+}
+
+.google-sign-in {
+  background-image: url("/assets/images/btn_google_light_logo.svg");
+  background-position: left center;
+  background-repeat: no-repeat;
+  min-height: 18px;
+  padding-left: 3rem;
+}
+
+.flexRowSpaceBetween {
+  @include flex-flow(row nowrap);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-card-header {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  .mat-card-header-text {
+    margin: 0;
+  }
+}
+
+.mat-select-value {
+  overflow: visible !important;
+}
+
+.mat-paginator-container {
+  background-color: #f2f5f7;
+  flex-wrap: nowrap !important;
+  padding: 0 !important;
+  max-height: 68px !important;
+  .mat-paginator-range-label {
+    margin: 0 17px 0 19px !important;
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.grid-even-col-layout {
+  @include flex-flow(row nowrap);
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.group-arrow {
+  align-self: flex-end;
+}
+
+.account-form-card {
+  @include flex-flow(row nowrap);
+  justify-content: center;
+  align-items: center;
+  .mat-card {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, .1) !important;
+    background: inherit;
+  }
+}
+
+@supports(grid-area: auto) {
+  .login2colmunsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(auto-fill,1fr);
+    grid-gap: 2rem 2rem;
+    align-items: center;
+    margin-top: 2rem !important;
+  }
+  .submit-button {
+    grid-row: 4;
+    grid-column: 1;
+  }
+  .suparatingLine {
+    height: 1px;
+    width: 100%;
+  }
+  .not-a-member {
+    grid-row: 5;
+    grid-column: span 2;
+    align-self: baseline;
+  }
+  .table-options {
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+  }
+  .grid-even-col-layout {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-columns: repeat(4, 1fr) .2fr;
+    grid-gap: 2rem 1rem;
+  }
+  .group-arrow {
+    grid-column: 5;
+  }
+
+  .account-form-card {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: .5fr 2fr auto;
+   
+    .card{
+      grid-column: 2;
+      grid-row: 2;
+    }
+  }
+}

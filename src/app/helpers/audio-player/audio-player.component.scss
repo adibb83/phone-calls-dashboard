@@ -1,0 +1,22 @@
+@import '../../../assets/styles/mixins';
+.player-layout{
+  @include flex-flow(row nowrap);
+  justify-content:flex-start;
+  align-items: center;
+  text-align: -webkit-right;
+  text-align: right;
+}
+
+$main5:#3899ec;
+
+.mat-icon{color:$main5;}
+
+
+
+@supports(grid-area: auto) {
+
+  .player-layout{
+    display: grid;
+    grid-template-columns: 1fr 1fr 4fr;
+  }
+}
